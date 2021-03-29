@@ -34,7 +34,9 @@ const Home = (props) => {
           error.message ||
           error.toString();
 
-        setContent(_content);
+        setContent([
+          { topic: "Oops!", description: "No Discussion Started yet" },
+        ]);
       }
     );
   };
