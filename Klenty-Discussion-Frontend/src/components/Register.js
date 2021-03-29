@@ -72,7 +72,7 @@ const Register = (props) => {
     if (checkBtn.current.context._errors.length === 0) {
       AuthService.register(name, email, password).then(
         (response) => {
-          setMessage(response.data);
+          setMessage("You can login now!");
           setSuccessful(true);
         },
         (error) => {
@@ -83,7 +83,7 @@ const Register = (props) => {
             error.message ||
             error.toString();
 
-          setMessage(resMessage);
+          setMessage("Invalid Email or Password");
           setSuccessful(false);
         }
       );
@@ -109,6 +109,7 @@ const Register = (props) => {
                   className="form-control"
                   name="name"
                   value={name}
+                  required
                   onChange={onChangeName}
                 />
               </div>
@@ -120,6 +121,7 @@ const Register = (props) => {
                   className="form-control"
                   name="email"
                   value={email}
+                  required
                   onChange={onChangeEmail}
                   validations={[required, validEmail]}
                 />
@@ -131,6 +133,7 @@ const Register = (props) => {
                   type="password"
                   className="form-control"
                   name="password"
+                  required
                   value={password}
                   onChange={onChangePassword}
                   validations={[required, vpassword]}
@@ -151,7 +154,7 @@ const Register = (props) => {
                 }
                 role="alert"
               >
-                You can login now!
+                {message}
               </div>
             </div>
           )}

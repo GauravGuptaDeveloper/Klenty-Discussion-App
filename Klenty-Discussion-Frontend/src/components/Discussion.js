@@ -84,6 +84,7 @@ const Discussion = () => {
                 className="form-control"
                 name="topic"
                 value={topic}
+                required
                 onChange={onChangeTopic}
               />
             </div>

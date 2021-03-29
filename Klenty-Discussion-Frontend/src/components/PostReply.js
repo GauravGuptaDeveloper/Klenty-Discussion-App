@@ -60,6 +60,7 @@ const Sample = (props) => {
                     type="text"
                     className="form-control"
                     name="reply"
+                    required
                     value={reply}
                     onChange={onChangeReply}
                   />
