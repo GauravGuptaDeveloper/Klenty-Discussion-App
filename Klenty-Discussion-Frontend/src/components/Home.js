@@ -7,51 +7,43 @@ const Home = (props) => {
   const [content, setContent] = useState("");
   const [discussion, setDiscussion] = useState("");
 
-  const getUserDiscussion = () => {
-    UserService.getDiscussions(props.id).then(
-      (response) => {
-        setDiscussion(response.data);
-      },
-      (error) => {
-        const _content =
-          (error.response && error.response.data) ||
-          error.message ||
-          error.toString();
-
-        setDiscussion([
-          {
-            topic: "Oops!",
-            description:
-              "No Discussion Started yet! Can you start with something?",
-          },
-        ]);
-      }
-    );
-  };
-
-  const getAllDiscussions = () => {
-    UserService.getPublicContent().then(
-      (response) => {
-        setContent(response.data);
-      },
-      (error) => {
-        const _content =
-          (error.response && error.response.data) ||
-          error.message ||
-          error.toString();
-
-        setContent([
-          { topic: "Oops!", description: "No Discussion Started yet" },
-        ]);
-      }
-    );
-  };
-
   useEffect(() => {
     if (!props.id) {
-      getAllDiscussions();
+      UserService.getDiscussions(props.id).then(
+        (response) => {
+          setDiscussion(response.data);
+        },
+        (error) => {
+          const _content =
+            (error.response && error.response.data) ||
+            error.message ||
+            error.toString();
+
+          setDiscussion([
+            {
+              topic: "Oops!",
+              description:
+                "No Discussion Started yet! Can you start with something?",
+            },
+          ]);
+        }
+      );
     } else {
-      getUserDiscussion();
+      UserService.getPublicContent().then(
+        (response) => {
+          setContent(response.data);
+        },
+        (error) => {
+          const _content =
+            (error.response && error.response.data) ||
+            error.message ||
+            error.toString();
+
+          setContent([
+            { topic: "Oops!", description: "No Discussion Started yet" },
+          ]);
+        }
+      );
     }
   }, []);
 
