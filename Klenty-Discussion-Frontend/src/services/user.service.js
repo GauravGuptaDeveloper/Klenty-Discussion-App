@@ -9,7 +9,7 @@ const getPublicContent = () => {
 };
 
 const getDiscussions = () => {
-  return axios.get("user/discussion", {
+  return axios.get("/user/discussion/", {
     headers: authHeader(),
   });
 };
@@ -21,7 +21,7 @@ const getPublicReplies = (discussionId) => {
 const addDiscussion = (topic, description) => {
   console.log(topic, description);
   return axios.post(
-    API_URL,
+    "/discussion/",
     {
       topic,
       description,
