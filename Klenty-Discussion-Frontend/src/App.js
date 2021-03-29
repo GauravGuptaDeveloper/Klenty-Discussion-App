@@ -41,7 +41,7 @@ const App = () => {
 
           {currentUser && (
             <li className="nav-item">
-              <Link to={"/discussion"} className="nav-link">
+              <Link to={"/discuss"} className="nav-link">
                 Discussion
               </Link>
             </li>
@@ -84,7 +84,7 @@ const App = () => {
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/profile" component={Profile} />
-          <Route path="/discussion" component={Discussion} />
+          <Route path="/discuss" component={Discussion} />
         </Switch>
       </div>
     </div>

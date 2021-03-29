@@ -18,7 +18,13 @@ const Home = (props) => {
           error.message ||
           error.toString();
 
-        setDiscussion(_content);
+        setDiscussion([
+          {
+            topic: "Oops!",
+            description:
+              "No Discussion Started yet! Can you start with something?",
+          },
+        ]);
       }
     );
   };
