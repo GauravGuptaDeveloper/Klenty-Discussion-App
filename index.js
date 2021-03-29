@@ -16,7 +16,7 @@ const port = process.env.PORT;
 const whitelist = [
   "http://localhost:3000",
   "http://localhost:8081",
-  "https://shrouded-journey-38552.heroku",
+  "https://klenty-discussion-app.herokuapp.com/",
 ];
 const corsOptions = {
   origin: function (origin, callback) {
