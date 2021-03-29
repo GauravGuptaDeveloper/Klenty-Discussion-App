@@ -13,25 +13,26 @@ const app = express();
 const port = process.env.PORT;
 
 // Middleware
-const whitelist = [
-  "http://localhost:3000",
-  "http://localhost:8081",
-  "https://klenty-discussion-app.herokuapp.com/",
-];
-const corsOptions = {
-  origin: function (origin, callback) {
-    console.log("** Origin of request " + origin);
-    if (whitelist.indexOf(origin) !== -1 || !origin) {
-      console.log("Origin acceptable");
-      callback(null, true);
-    } else {
-      console.log("Origin rejected");
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-};
-app.use(cors(corsOptions));
+// const whitelist = [
+//   "http://localhost:3000",
+//   "http://localhost:8081",
+//   "https://klenty-discussion-app.herokuapp.com/",
+// ];
+// const corsOptions = {
+//   origin: function (origin, callback) {
+//     console.log("** Origin of request " + origin);
+//     if (whitelist.indexOf(origin) !== -1 || !origin) {
+//       console.log("Origin acceptable");
+//       callback(null, true);
+//     } else {
+//       console.log("Origin rejected");
+//       callback(new Error("Not allowed by CORS"));
+//     }
+//   },
+// };
+// app.use(cors(corsOptions));
 
+app.use(cors());
 app.use(express.json());
 app.use(User.router);
 app.use(Replies.router);
