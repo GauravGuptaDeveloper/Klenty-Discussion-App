@@ -1,3 +1,4 @@
+const path = require("path");
 const express = require("express");
 const session = require("express-session");
 const cors = require("cors");
@@ -10,6 +11,26 @@ require("./db/mongoose");
 
 const app = express();
 const port = process.env.PORT;
+
+// Middleware
+const whitelist = [
+  "http://localhost:3000",
+  "http://localhost:8081",
+  "https://shrouded-journey-38552.heroku",
+];
+const corsOptions = {
+  origin: function (origin, callback) {
+    console.log("** Origin of request " + origin);
+    if (whitelist.indexOf(origin) !== -1 || !origin) {
+      console.log("Origin acceptable");
+      callback(null, true);
+    } else {
+      console.log("Origin rejected");
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+};
+app.use(cors(corsOptions));
 
 app.use(cors());
 app.use(express.json());
@@ -26,6 +47,19 @@ app.use(
 );
 
 require("./config/passport");
+
+if (process.env.NODE_ENV === "production") {
+  // Serve any static files
+  app.use(
+    express.static(path.join(__dirname, "Klenty-Discussion-Frontend/build"))
+  );
+  // Handle React routing, return all requests to React app
+  app.get("*", function (req, res) {
+    res.sendFile(
+      path.join(__dirname, "Klenty-Discussion-Frontend/build", "index.html")
+    );
+  });
+}
 
 // For Testing pupose whether application is working fine or not.
 app.get("/", (req, res) => {
