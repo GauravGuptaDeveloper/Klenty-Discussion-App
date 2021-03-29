@@ -1,9 +1,6 @@
 import axios from "axios";
 import authHeader from "./auth-header";
 
-// const API_URL = "http://localhost:8081/discussion/";
-// const API_URL_REPLY = "http://localhost:8081/replies/";
-
 const getPublicContent = () => {
   return axios.get("/discussion");
 };
