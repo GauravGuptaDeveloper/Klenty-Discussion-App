@@ -8,7 +8,7 @@ const Home = (props) => {
   const [discussion, setDiscussion] = useState("");
 
   useEffect(() => {
-    if (!props.id) {
+    if (props.id) {
       UserService.getDiscussions(props.id).then(
         (response) => {
           setDiscussion(response.data);
